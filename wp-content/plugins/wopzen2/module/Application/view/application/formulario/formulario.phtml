@@ -1,0 +1,92 @@
+<h1><?php echo $this->titulo ?></h1>
+<?php
+$form = $this->form;
+$form->prepare();
+/*
+// Assuming the "contact/process" route exists...
+$form->setAttribute('action', $this->url('application/formulario/recibe'));
+
+// Set the method attribute for the form
+$form->setAttribute('method', 'post');
+*/
+$form->setAttributes(array(
+    'action' => $this->url.'http://grancanariacultural.tk/',
+    'method' => 'post'
+));
+// Get the form label plugin
+$formLabel = $this->plugin('formLabel');
+
+// Render the opening tag
+echo $this->form()->openTag($form);
+?>
+
+<div class="form_element">
+    <p>
+    <?php
+    $name = $form->get('name');
+    echo $formLabel->openTag() . $name->getOption('label')."<br>";
+
+    echo $formLabel->closeTag();
+    echo $this->formInput($name);
+    ?></p>
+    <p>
+        <?php
+        $apellidos = $form->get('apellidos');
+        echo $formLabel->openTag() . $apellidos->getOption('label')."<br>";
+
+        echo $formLabel->closeTag();
+        echo $this->formInput($apellidos);
+        ?></p>
+    <p>
+        <?php
+        $email = $form->get('email');
+        echo $formLabel->openTag() . $email->getOption('label')."<br>";
+
+        echo $formLabel->closeTag();
+        echo $this->formInput($email);
+        ?></p>
+    <p>
+        <?php
+        $edad = $form->get('edad');
+        echo $formLabel->openTag() . $edad->getOption('label')."<br>";
+
+        echo $formLabel->closeTag();
+        echo $this->formInput($edad);
+        ?></p>
+    <p>
+        <?php
+        $municipio = $form->get('municipio');
+        echo $formLabel->openTag() . $municipio->getLabel()."<br>";
+
+        echo $formLabel->closeTag();
+        echo $this->formSelect($municipio);
+
+        ?>
+
+    </p>
+
+    <p>
+        <?php
+        $usuario = $form->get('usuario');
+        echo $formLabel->openTag() . $usuario->getOption('label')."<br>";
+
+        echo $formLabel->closeTag();
+        echo $this->formInput($usuario);
+        ?></p>
+    <p>
+        <?php
+        $pass = $form->get('pass');
+        echo $formLabel->openTag().$pass->getOption('label')."<br>";
+        echo $formLabel->closeTag();
+        echo $this->formInput($pass);
+        ?></p>
+
+
+        <?php echo $this->formElement($form->get('send')) ?>
+    </p>
+</div>
+
+
+
+
+<?php echo $this->form()->closeTag() ?>

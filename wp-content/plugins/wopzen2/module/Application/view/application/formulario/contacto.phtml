@@ -1,0 +1,69 @@
+<h1><?php echo $this->titulo ?></h1>
+<?php
+$form = $this->form;
+$form->prepare();
+/*
+// Assuming the "contact/process" route exists...
+$form->setAttribute('action', $this->url('application/formulario/recibe'));
+
+// Set the method attribute for the form
+$form->setAttribute('method', 'post');
+*/
+$form->setAttributes(array(
+    'action' => $this->url.'wordpress/wp-content/themes/gridster-lite/recibe/',
+    'method' => 'post'
+));
+// Get the form label plugin
+$formLabel = $this->plugin('formLabel');
+
+// Render the opening tag
+echo $this->form()->openTag($form);
+?>
+
+<div class="form_element">
+    <p>
+    <?php
+    $name = $form->get('name');
+    echo $formLabel->openTag() . $name->getOption('label')."<br>";
+
+    echo $formLabel->closeTag();
+    echo $this->formInput($name);
+    ?></p>
+    <p>
+        <?php
+        $apellidos = $form->get('apellidos');
+        echo $formLabel->openTag() . $apellidos->getOption('label')."<br>";
+
+        echo $formLabel->closeTag();
+        echo $this->formInput($apellidos);
+        ?></p>
+    <p>
+        <?php
+        $email = $form->get('email');
+        echo $formLabel->openTag() . $email->getOption('label')."<br>";
+
+        echo $formLabel->closeTag();
+        echo $this->formInput($email);
+        ?></p>
+    <p>
+        <?php
+        $texto = $form->get('texto');
+        echo $formLabel->openTag() . $texto->getOption('label')."<br>";
+
+        echo $formLabel->closeTag();
+        echo $this->formInput($texto);
+
+        ?>
+
+    </p>
+
+
+    <p>
+        <?php echo $this->formElement($form->get('send')) ?>
+    </p>
+</div>
+
+
+
+
+<?php echo $this->form()->closeTag() ?>
